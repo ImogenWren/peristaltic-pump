@@ -2,6 +2,9 @@
 
     Peristaltic Pump using DRV8825 Stepper Motor Driver
 
+    Pump Motor Specification:
+    current per winding: 500 mA
+
 
     Pinout:
 
@@ -37,11 +40,13 @@ void set_direction(bool direction = true) {
 
 void do_pulse() {
   digitalWrite(SLEEP_PIN, HIGH);
+  delay(100);
   digitalWrite(STEP_PIN, HIGH);
-  delayMicroseconds(500);
+  delayMicroseconds(1000);
   digitalWrite(STEP_PIN, LOW);
-  delayMicroseconds(500);
+  delayMicroseconds(10000);
   digitalWrite(SLEEP_PIN, LOW);
+  delay(10);
 }
 
 
@@ -55,6 +60,7 @@ void dispense_per_step(uint16_t no_steps = 1) {
     delay(500);
   }
   Serial.println("Dispensing Finished");
+  delay(2000);
  // pump_active = false;
 }
 
@@ -71,7 +77,7 @@ void setup() {
   set_direction(true);
   digitalWrite(RESET_PIN, HIGH);   // Inital state
   digitalWrite(ENABLE_PIN, LOW);
-  digitalWrite(SLEEP_PIN, HIGH);
+  digitalWrite(SLEEP_PIN, LOW);
   delay(1000);
   pump_active = true;
 }
