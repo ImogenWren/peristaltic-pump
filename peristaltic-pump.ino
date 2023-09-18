@@ -64,6 +64,10 @@ buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);
 #define SLEEP_SLEEP false
 #define ENABLE_SLEEP true
 
+
+#define PULSES_PER_ML 5297
+// #define PULSES_PER_ML 5297   // last tested value
+
 void io_setup() {
   pinMode(STEP_PIN, OUTPUT);
   pinMode(DIR_PIN, OUTPUT);
@@ -179,7 +183,7 @@ void loop() {
       //dispense_per_step(2645);  // this dispenses 0.5ml for some reason this pump needs 200 steps ish to move properly, and smallest step is 1/16th microstep
       //dispense_per_step(40000); // this dispenses 0.5ml for some reason this pump needs 200 steps ish to move properly, and smallest step is 1/16th microste
       
-      dispense_per_step(5297); // dispense 1ml
+      dispense_per_step(PULSES_PER_ML); // dispense 1ml
       dispenseCount--;
       Serial.print("Fluid Dispensed, Count: ");
       Serial.print(dispenseCount);
