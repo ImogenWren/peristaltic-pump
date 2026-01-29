@@ -18,11 +18,11 @@
 buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);
 
 
-#define STEP_PIN 5
-#define DIR_PIN 6
-#define RESET_PIN 7
-#define SLEEP_PIN 8
-#define ENABLE_PIN 4
+#define STEP_PIN 6
+#define DIR_PIN 4
+#define RESET_PIN A7
+#define SLEEP_PIN A6
+#define ENABLE_PIN 2
 
 //DRV8824/8825
 
@@ -147,6 +147,8 @@ void dispense_large_vol(int16_t no_steps = 1) {
   delay(2);
 }
 
+uint16_t dispenseCount;
+uint32_t totalDispensedCount;
 
 void setup() {
   Serial.begin(115200);
@@ -167,14 +169,14 @@ void setup() {
   delay(1000);
   pump_active = true;
   Serial.println("Pump Active");
+  dispenseCount = 1;
 }
 
 
 void test_motor() {
 }
 
-uint16_t dispenseCount;
-uint32_t totalDispensedCount;
+
 
 // disp
 void loop() {
